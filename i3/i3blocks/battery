@@ -1,0 +1,41 @@
+#!/bin/bash
+
+string=$(acpi -b)
+arr=($string)
+
+stat=${arr[2]::-1}
+
+if [ "$stat" = 'Full' ]; then
+    icon=""
+    color="#FFFFFF"
+    time="Full"
+    percent=${arr[3]::-1}
+else
+    percent=${arr[3]::-2}
+    time=${arr[4]::-3}
+    if [ "$stat" = 'Charging' ]; then
+        icon=""
+        color="#FFFFFF"
+    else
+        if [[ $percent -lt 10 ]]; then
+            icon=""
+            color="#FF0000"
+        elif [[ $percent -lt 25 ]]; then
+            icon=""
+            color="#FF7777"
+        elif [[ $percent -lt 50 ]]; then
+            icon=""
+            color="#FFAAAA"
+        elif [[ $percent -lt 90 ]]; then
+            icon=""
+            color="#FFDDDD"
+        else
+            icon=""
+            color="#FFFFFF"
+        fi
+    fi
+fi
+
+echo "$icon  $percent% ($time)"
+echo ""
+echo $color

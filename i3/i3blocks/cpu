@@ -1,0 +1,10 @@
+#!/bin/bash
+
+string=$(acpi -t)
+arr=($string)
+
+usage=$(grep 'cpu ' /proc/stat | awk '{printf "%.2f", ($2+$4)*100/($2+$4+$5)}')
+memory=$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')
+
+echo "CPU:  $usage,  ${arr[3]}°${arr[5]}   MEM:  $memory"
+

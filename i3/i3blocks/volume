@@ -1,0 +1,19 @@
+#!/bin/bash
+
+string=$(amixer get Master)
+volume=$(expr "$string" : '.*\[\(.*\)%\].*')
+
+if [[ $string == *"[on]" ]]; then
+    if [[ $volume -lt 20 ]]; then
+        echo "  $volume"
+    elif [[ $volume -lt 50 ]]; then
+        echo "  $volume"
+    else
+        echo "  $volume"
+    fi
+        
+else
+    echo ""
+    echo "Mute"
+    echo "#777777"
+fi
