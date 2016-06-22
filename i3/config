@@ -11,13 +11,13 @@
 set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 #font pango:DejaVu Sans Mono 10
-font pango:Ubuntu Mono 10 
+font pango:Ubuntu Mono 10
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -29,11 +29,11 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run -b
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu 'dmenu -b -i -p "@ Aluminium"'
 
 # change focus
 bindsym $mod+j focus left
@@ -124,6 +124,8 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+#move around workspaces
+bindsym $mod+Tab workspace next
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -178,8 +180,8 @@ mode $power {
 bindsym $mod+p mode $power
 
 # Brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && notify-send -t 1 -i "~/.config/dunst/icons/sun.png" "Brightness   "
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && notify-send -t 1 "Brightness   "
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% & pkill -RTMIN+1 i3blocks #increase sound volume
@@ -205,6 +207,8 @@ new_window 1pixel
 
 #run network manager applet 
 exec --no-startup-id nm-applet
+# ClipIt
+exec --no-startup-id clipit 
 #run viber 
 exec --no-startup-id /opt/viber/Viber
 # Set wallpaper
@@ -221,10 +225,10 @@ exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "Synaptics Scrol
 bar {
 	colors {
 		background #08182B 
-    	statusline #ffffff
-    	separator  #888888
+    		statusline #ffffff
+    		separator  #888888
 	}
-	font pango: Ubuntu Mono,FontAwesome 10
+	font pango: Avdira ,Ubuntu Mono,FontAwesome 9
 	status_command i3blocks -c ~/.config/i3/i3blocks/i3blocks.config
     #status_command i3status
  	position top
@@ -243,15 +247,11 @@ assign [class="(?i)ViberPC"] $tag2
 assign [class="(?i)gnome-terminal"] $tag3
 assign [class="(?i)atom"] $tag4
 assign [class="(?i)vlc"] $tag5
-#######################################################################
-# automatically start i3-config-wizard to offer the user to create a
-# keysym-based config which used his favorite modifier (alt or windows)
-#
-# i3-config-wizard will not launch if there already is a config file
-# in ~/.i3/config.
-#
-# Please remove the following exec line:
-#######################################################################
-exec i3-config-wizard
 
-
+#Go to workspace on exec of app
+#for_window [class="(?i)Viber"] workspace $tag2
+#for_window [class="(?i)ViberPC"] workspace $tag2
+for_window [class="(?i)gnome-terminal"] workspace $tag3
+for_window [class="(?i)atom"] workspace $tag4
+for_window [class="(?i)vlc"] workspace $tag5
+for_window [class="(?i)google-chrome"] workspace $tag1

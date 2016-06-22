@@ -6,15 +6,22 @@ arr=($string)
 stat=${arr[2]::-1}
 
 if [ "$stat" = 'Full' ]; then
-    icon=""
+    icon=""
     color="#FFFFFF"
     time="Full"
     percent=${arr[3]::-1}
+
+elif [ "$stat" = 'Unknown' ]; then
+    icon=""
+    color="#FFFFFF"
+    time="Almost done"
+    percent=${arr[3]::-1}
+
 else
     percent=${arr[3]::-2}
     time=${arr[4]::-3}
     if [ "$stat" = 'Charging' ]; then
-        icon=""
+        icon=""
         color="#FFFFFF"
     else
         if [[ $percent -lt 10 ]]; then
@@ -22,13 +29,13 @@ else
             color="#FF0000"
         elif [[ $percent -lt 25 ]]; then
             icon=""
-            color="#FF7777"
+            color="#FF0000"
         elif [[ $percent -lt 50 ]]; then
             icon=""
-            color="#FFAAAA"
+            color="#FFFFFF"
         elif [[ $percent -lt 90 ]]; then
             icon=""
-            color="#FFDDDD"
+            color="#FFFFFF"
         else
             icon=""
             color="#FFFFFF"
