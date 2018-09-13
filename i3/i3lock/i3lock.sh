@@ -6,7 +6,8 @@ screen=~/.config/i3/i3lock/lockscreen.png
 #this=~/.config/i3/i3lock/yolo.png
 rm $image -f
 scrot $image
-#mogrify -colorspace Gray $lock
-composite -gravity center -blend 50 $screen $image $image
+#mogrify -colorspace Gray $image
+#composite -blend 50 $screen $image $image
 mogrify -blur 5x9+90 -gravity center -draw "image over 0,0 0,0 '$lock'" $image
+convert $image -gravity center -font ubuntu -fill white -pointsize 22 -annotate +0+100 'Enter password to unlock' $image 
 i3lock -u -b -p default -i $image
