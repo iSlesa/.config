@@ -1,17 +1,21 @@
 ! Rofi Config
 !
-rofi.color-window: argb:c82d303b, #7c8389, #1d1f21
-rofi.color-normal: argb:031d1f21, #f9f9f9, argb:031d1f21, #4b5160, #f9f9f9
-rofi.color-urgent: argb:031d1f21, #cc6666, argb:e54b5160, #a54242, #f9f9f9
-rofi.color-active: argb:031d1f21, #f9f9f9, argb:031d1f28, #3f444f, #f9f9f9
-rofi.width: 50
+rofi.color-window: argb:aa530031, #fff, argb:00530031
+rofi.color-normal: argb:aa530031, #fff, argb:031d1f21, argb:99ff3d00, #fff
+rofi.color-urgent: argb:aa530031, #fff, argb:e54b5160, #a54242, #fff
+rofi.color-active: argb:aa530031, #fff, argb:031d1f28, argb:ff3f444f, #fff
+rofi.width: 40
+rofi.height: 40
 rofi.lines: 3
 rofi.columns: 1
-rofi.font: Ubuntu Mono 20
+rofi.font: Inconsolata 20
 rofi.bw: 0
-rofi.padding: 20
+rofi.padding: 40
 rofi.eh: 1
-rofi.line-padding: 12
+rofi.line-padding: 30
 rofi.fixed-num-lines: false
 rofi.separator-style: none
 rofi.hide-scrollbar: true
+rofi.yoffset: -200
+rofi.show-icons: true
+rofi.icon-theme: Ubuntu-MATE
